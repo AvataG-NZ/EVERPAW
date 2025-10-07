@@ -1,0 +1,1304 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap') layer(fonts);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 110%;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #1c1917;
+  }
+
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Change text selection color to orange */
+  ::selection {
+    background-color: rgba(249, 115, 22, 0.5);
+    color: #ffffff;
+  }
+
+  ::-moz-selection {
+    background-color: rgba(249, 115, 22, 0.5);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  /* Glass Effects with Dark Background Support */
+  .glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    overflow: visible;
+    z-index: 100;
+  }
+
+  .glass-nav::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-nav:hover::before {
+    opacity: 1;
+  }
+
+  .glass-nav::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-nav:hover::after {
+    opacity: 1;
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-badge {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px) saturate(160%);
+    -webkit-backdrop-filter: blur(5px) saturate(160%);
+  }
+
+  /* Windows Fluent Design Reveal Effect */
+  .glass-hover {
+    position: relative;
+    overflow: visible;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+  }
+
+  .glass-hover::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-hover:hover::before {
+    opacity: 1;
+  }
+
+  /* Spotlight inner glow effect */
+  .glass-hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-hover:hover::after {
+    opacity: 1;
+  }
+
+  /* Organic Floating Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.05);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.95);
+    }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-25px, 25px) scale(1.08);
+    }
+    66% {
+      transform: translate(30px, -20px) scale(0.92);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(15px, 15px) scale(1.03);
+    }
+  }
+
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 25s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 30s ease-in-out infinite;
+  }
+
+  /* Text Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUnblur {
+    0% {
+      opacity: 0;
+      filter: blur(40px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes slowZoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes slowZoomLong {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+}
+
+@layer components {
+  /* Custom color utilities for peach tones */
+  .from-peach-400\/20 {
+    --tw-gradient-from: rgb(251 207 232 / 0.2);
+  }
+
+  .to-peach-500\/20 {
+    --tw-gradient-to: rgb(249 168 212 / 0.2);
+  }
+
+  .from-peach-400\/30 {
+    --tw-gradient-from: rgb(251 207 232 / 0.3);
+  }
+
+  .to-amber-500\/30 {
+    --tw-gradient-to: rgb(245 158 11 / 0.3);
+  }
+
+  .from-peach-500\/20 {
+    --tw-gradient-from: rgb(249 168 212 / 0.2);
+  }
+
+  .from-peach-500\/60 {
+    --tw-gradient-from: rgb(249 168 212 / 0.6);
+  }
+
+  .text-peach-300 {
+    color: rgb(253 224 71);
+  }
+
+  /* Enhanced Glass Orbs with Borders */
+  .glass-orb {
+    position: relative;
+    border-radius: 50%;
+  }
+
+  .glass-orb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .glass-orb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(60px) saturate(200%);
+    -webkit-backdrop-filter: blur(60px) saturate(200%);
+  }
+
+  .glass-orb-teal::after {
+    background: linear-gradient(135deg,
+      rgba(154, 207, 190, 0.35) 0%,
+      rgba(154, 205, 207, 0.25) 100%
+    );
+    box-shadow:
+      0 8px 32px rgba(154, 207, 190, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-orb-cyan::after {
+    background: linear-gradient(135deg,
+      rgba(154, 205, 207, 0.35) 0%,
+      rgba(103, 232, 249, 0.25) 100%
+    );
+    box-shadow:
+      0 8px 32px rgba(154, 205, 207, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-orb-peach::after {
+    background: linear-gradient(135deg,
+      rgba(238, 221, 210, 0.35) 0%,
+      rgba(249, 168, 212, 0.25) 100%
+    );
+    box-shadow:
+      0 8px 32px rgba(238, 221, 210, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-orb-amber::after {
+    background: linear-gradient(135deg,
+      rgba(243, 190, 122, 0.35) 0%,
+      rgba(245, 158, 11, 0.25) 100%
+    );
+    box-shadow:
+      0 8px 32px rgba(243, 190, 122, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-orb-emerald::after {
+    background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.35) 0%,
+      rgba(52, 211, 153, 0.25) 100%
+    );
+    box-shadow:
+      0 8px 32px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Glass Card Effect for Images */
+  .glass-card {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(41, 37, 36, 0.5) 0%,
+      rgba(41, 37, 36, 0.2) 30%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(2px) saturate(120%);
+    -webkit-backdrop-filter: blur(2px) saturate(120%);
+  }
+
+  .glass-overlay-peach {
+    background: linear-gradient(
+      to top,
+      rgba(249, 168, 212, 0.6) 0%,
+      rgba(238, 221, 210, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(2px) saturate(140%);
+    -webkit-backdrop-filter: blur(2px) saturate(140%);
+  }
+
+  /* Fluent Design Button Effect */
+  .fluent-button {
+    position: relative;
+    overflow: visible;
+    transform-style: preserve-3d;
+  }
+
+  .fluent-button::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fluent-button:hover::before {
+    opacity: 1;
+  }
+
+  .fluent-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.2),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .fluent-button:hover::after {
+    opacity: 1;
+  }
+
+  /* Fluent Design Footer Effect */
+  .glass-footer {
+    position: relative;
+    overflow: visible;
+  }
+
+  .glass-footer::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-footer:hover::before {
+    opacity: 1;
+  }
+
+  .glass-footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-footer:hover::after {
+    opacity: 1;
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Feature bar fluent design */
+  .feature-bar {
+    position: relative;
+  }
+
+  .feature-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    padding: 2px;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.1) 40%,
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-bar:hover::before {
+    opacity: 1;
+  }
+
+  .feature-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-bar:hover::after {
+    opacity: 1;
+  }
+
+  /* Fluent Design Divider Effect */
+  .fluent-divider {
+    position: relative;
+    overflow: visible;
+  }
+
+  .fluent-divider::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) 50%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    height: 4px;
+    top: -2px;
+  }
+
+  .fluent-divider:hover::before {
+    opacity: 1;
+  }
+
+  /* Fluent Design Input Field Effect */
+  .fluent-input {
+    position: relative;
+    overflow: visible;
+  }
+
+  .fluent-input::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fluent-input:hover::before,
+  .fluent-input:focus-within::before {
+    opacity: 1;
+  }
+
+  /* Fluent Design Cart Drawer Effect */
+  .cart-drawer {
+    position: relative;
+    overflow: visible;
+  }
+
+  .cart-drawer::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at 0px var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cart-drawer:hover::before {
+    opacity: 1;
+  }
+
+  .cart-drawer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at 0px var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cart-drawer:hover::after {
+    opacity: 1;
+  }
+
+  /* Fluent Design Rewards Drawer Effect */
+  .rewards-drawer {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-drawer::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at 0px var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .rewards-drawer:hover::before {
+    opacity: 1;
+  }
+
+  .rewards-drawer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at 0px var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rewards-drawer:hover::after {
+    opacity: 1;
+  }
+
+  /* Rewards Points Card with Glow */
+  .rewards-points-card {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-points-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-points-card:hover::before {
+    opacity: 1;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.8),
+      rgba(249, 115, 22, 0.4) 30%,
+      transparent 60%
+    );
+  }
+
+  .rewards-points-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-points-card:hover::after {
+    opacity: 1;
+    background: radial-gradient(
+      500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.15),
+      transparent 40%
+    );
+  }
+
+  /* Rewards Activity Card with Glow */
+  .rewards-activity-card {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-activity-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.7),
+      rgba(249, 115, 22, 0.3) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-activity-card:hover::before {
+    opacity: 1;
+  }
+
+  .rewards-activity-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.12),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-activity-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Rewards Earn Card with Glow */
+  .rewards-earn-card {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-earn-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.7),
+      rgba(249, 115, 22, 0.3) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-earn-card:hover::before {
+    opacity: 1;
+  }
+
+  .rewards-earn-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.12),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-earn-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Rewards Redeem Button with Glow */
+  .rewards-redeem-btn {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-redeem-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-redeem-btn:hover::before {
+    opacity: 1;
+  }
+
+  .rewards-redeem-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.15),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .rewards-redeem-btn:hover::after {
+    opacity: 1;
+  }
+
+  /* Rewards Close Button with Glow */
+  .rewards-close-btn {
+    position: relative;
+    overflow: visible;
+  }
+
+  .rewards-close-btn::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.7),
+      rgba(249, 115, 22, 0.3) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-close-btn:hover::before {
+    opacity: 1;
+  }
+
+  .rewards-close-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(249, 115, 22, 0.12),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rewards-close-btn:hover::after {
+    opacity: 1;
+  }
+
+  /* Universal Card Effects for All Pages */
+  .career-card,
+  .press-card,
+  .help-card,
+  .shipping-card,
+  .returns-card,
+  .warranty-card,
+  .pricing-card,
+  .beta-card,
+  .benefit-card,
+  .home-card {
+    position: relative;
+    overflow: visible;
+    transform-style: preserve-3d;
+  }
+
+  .career-card::before,
+  .press-card::before,
+  .help-card::before,
+  .shipping-card::before,
+  .returns-card::before,
+  .warranty-card::before,
+  .pricing-card::before,
+  .beta-card::before,
+  .benefit-card::before,
+  .home-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .career-card:hover::before,
+  .press-card:hover::before,
+  .help-card:hover::before,
+  .shipping-card:hover::before,
+  .returns-card:hover::before,
+  .warranty-card:hover::before,
+  .pricing-card:hover::before,
+  .beta-card:hover::before,
+  .benefit-card:hover::before,
+  .home-card:hover::before {
+    opacity: 1;
+  }
+
+  .career-card::after,
+  .press-card::after,
+  .help-card::after,
+  .shipping-card::after,
+  .returns-card::after,
+  .warranty-card::after,
+  .pricing-card::after,
+  .beta-card::after,
+  .benefit-card::after,
+  .home-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.12),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .career-card:hover::after,
+  .press-card:hover::after,
+  .help-card:hover::after,
+  .shipping-card:hover::after,
+  .returns-card:hover::after,
+  .warranty-card:hover::after,
+  .pricing-card:hover::after,
+  .beta-card:hover::after,
+  .benefit-card:hover::after,
+  .home-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Trust Bar Divider Effects */
+  .trust-divider {
+    position: relative;
+    transition: all 0.5s ease;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  .home-card:hover .trust-divider {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8), transparent) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
+  }
+
+  /* Cursor styles for drag scrolling */
+  .cursor-grab {
+    cursor: grab;
+  }
+
+  .cursor-grabbing {
+    cursor: grabbing;
+  }
+
+  /* Custom scrollbar for cart drawer */
+  .cart-drawer ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .cart-drawer ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .cart-drawer ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+  }
+
+  .cart-drawer ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+    background-clip: padding-box;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Fluent divider effect with glow on hover */
+  .fluent-divider {
+    position: relative;
+  }
+
+  .fluent-divider::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    padding: 2px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) 50%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .fluent-divider:hover::before {
+    opacity: 1;
+  }
+
+  /* Footer Fluent Divider with Mouse Following Glow */
+  .fluent-divider-footer {
+    position: relative;
+  }
+
+  .fluent-divider-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    padding: 1px;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) 50%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4) 30%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .glass-footer:hover .fluent-divider-footer::before {
+    opacity: 1;
+  }
+
+  .fluent-divider-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3) 20%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.3) 80%,
+      transparent
+    );
+  }
+
+  /* Product Card Image Mask on Hover */
+  .product-image-masked {
+    transition: mask-image 0.3s ease, -webkit-mask-image 0.3s ease;
+  }
+
+  .group:hover .product-image-masked {
+    mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 80px), transparent calc(100% - 70px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 80px), transparent calc(100% - 70px), transparent 100%);
+  }
+}
